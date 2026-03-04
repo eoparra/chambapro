@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { MapPin, Star } from "lucide-react"
+import { MapPin, Star, BadgeCheck } from "lucide-react"
 import type { Professional } from "@prisma/client"
 
 export default function ProfessionalCard({
@@ -7,6 +7,8 @@ export default function ProfessionalCard({
 }: {
   professional: Professional
 }) {
+  const isVerified = p.reviewCount > 0
+
   return (
     <div className="card hover:shadow-md transition-shadow group flex flex-col">
       <div className="h-1.5 bg-gradient-to-r from-brand-500 to-brand-700 rounded-t-xl" />
@@ -17,9 +19,17 @@ export default function ProfessionalCard({
             {p.name.charAt(0)}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-gray-900 truncate group-hover:text-brand-700 transition-colors">
-              {p.name}
-            </h3>
+            <div className="flex items-center gap-1.5 flex-wrap mb-0.5">
+              <h3 className="font-bold text-gray-900 truncate group-hover:text-brand-700 transition-colors">
+                {p.name}
+              </h3>
+              {isVerified && (
+                <span className="inline-flex items-center gap-0.5 text-xs text-green-700 bg-green-50 border border-green-100 rounded-full px-2 py-0.5 font-medium shrink-0">
+                  <BadgeCheck className="h-3 w-3" />
+                  Verificado
+                </span>
+              )}
+            </div>
             <span className="text-xs bg-brand-50 text-brand-700 rounded-full px-2.5 py-0.5 font-medium">
               {p.profession}
             </span>
