@@ -205,17 +205,17 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       {/* ── Why Choose ChambaPro ── */}
       {!hasSearch && (
-        <section className="bg-gray-50 border-t border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 py-20">
-            <div className="text-center mb-14">
+        <section className="bg-white border-t border-gray-200">
+          <div className="max-w-5xl mx-auto px-4 py-16">
+            <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-900 mb-3">¿Por qué ChambaPro?</h2>
               <p className="text-gray-500">Hacemos fácil encontrar profesionales de confianza</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {FEATURES.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="flex flex-col items-center text-center">
-                  <div className="bg-indigo-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-5">
-                    <Icon className="h-8 w-8 text-indigo-500" strokeWidth={1.5} />
+                <div key={title} className="bg-gray-100 rounded-2xl p-8 flex flex-col items-center text-center">
+                  <div className="bg-brand-50 w-14 h-14 rounded-xl flex items-center justify-center mb-5">
+                    <Icon className="h-7 w-7 text-brand-600" strokeWidth={1.5} />
                   </div>
                   <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
