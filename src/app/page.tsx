@@ -99,19 +99,38 @@ export default async function HomePage({ searchParams }: PageProps) {
   return (
     <main>
       {/* ── Hero ── */}
-      <section className="bg-gradient-to-br from-brand-700 to-brand-900 text-white py-24 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center mb-5">
-            <div className="bg-white/10 p-4 rounded-2xl">
-              <Wrench className="h-10 w-10" />
-            </div>
+      <section
+        className="relative text-white py-28 md:py-40 px-4 overflow-hidden"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Dark navy overlay */}
+        <div className="absolute inset-0 bg-navy/[0.87]" />
+
+        <div className="relative max-w-4xl mx-auto text-center">
+          {/* Trust badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-8">
+            <Star className="h-3.5 w-3.5 text-brand-500 fill-brand-500" />
+            <span className="text-sm font-medium text-white/90">
+              De confianza para +10,000 hogares
+            </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            Encuentra Profesionales de Confianza
+
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight">
+            Encuentra los profesionales
+            <br />
+            <span className="text-brand-400">mejor calificados</span>
           </h1>
-          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+
+          <p className="text-lg text-white/65 mb-10 max-w-2xl mx-auto">
             Conecta con plomeros, electricistas, pintores y más en tu zona.
+            Lee reseñas y contrata con confianza.
           </p>
+
           <SearchBar initialValues={params} />
         </div>
       </section>
@@ -209,22 +228,22 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       {/* ── CTA for Professionals ── */}
       {!hasSearch && (
-        <section className="bg-gradient-to-br from-brand-700 to-brand-900 text-white">
+        <section className="bg-navy text-white">
           <div className="max-w-3xl mx-auto px-4 py-16 text-center">
             <h2 className="text-3xl font-bold mb-3">¿Eres Profesional?</h2>
-            <p className="text-blue-100 text-lg mb-8">
+            <p className="text-white/65 text-lg mb-8">
               Únete a ChambaPro y conecta con miles de clientes que buscan tus servicios.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/signup"
-                className="bg-white text-brand-700 font-semibold px-8 py-3 rounded-xl hover:bg-blue-50 transition-colors"
+                className="bg-brand-500 text-white font-semibold px-8 py-3 rounded-xl hover:bg-brand-600 transition-colors"
               >
                 Crear mi perfil gratis
               </Link>
               <Link
                 href="/signin"
-                className="border border-white/40 text-white font-medium px-8 py-3 rounded-xl hover:bg-white/10 transition-colors"
+                className="border border-white/30 text-white font-medium px-8 py-3 rounded-xl hover:bg-white/10 transition-colors"
               >
                 Ya tengo cuenta
               </Link>
