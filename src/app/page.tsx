@@ -4,8 +4,8 @@ import SearchBar from "@/components/SearchBar"
 import ProfessionalCard from "@/components/ProfessionalCard"
 import {
   Wrench, Star, Shield, Users,
-  Zap, Droplets, Building2, Paintbrush, Hammer,
-  Wind, KeyRound, Leaf, Sparkles, Flame,
+  Zap, Droplets, Paintbrush, Hammer,
+  Wind, Leaf, Sparkles,
 } from "lucide-react"
 import type { Professional } from "@prisma/client"
 
@@ -57,17 +57,14 @@ async function searchProfessionals(params: {
 }
 
 const CATEGORIES = [
-  { label: "Plomero", icon: Droplets, color: "bg-blue-50 text-blue-600 border-blue-100 hover:bg-blue-100" },
-  { label: "Electricista", icon: Zap, color: "bg-yellow-50 text-yellow-600 border-yellow-100 hover:bg-yellow-100" },
-  { label: "Albañil", icon: Building2, color: "bg-orange-50 text-orange-600 border-orange-100 hover:bg-orange-100" },
-  { label: "Pintor", icon: Paintbrush, color: "bg-pink-50 text-pink-600 border-pink-100 hover:bg-pink-100" },
-  { label: "Carpintero", icon: Hammer, color: "bg-amber-50 text-amber-700 border-amber-100 hover:bg-amber-100" },
-  { label: "Herrero", icon: Wrench, color: "bg-slate-50 text-slate-600 border-slate-100 hover:bg-slate-100" },
-  { label: "Técnico en Refrigeración", icon: Wind, color: "bg-cyan-50 text-cyan-600 border-cyan-100 hover:bg-cyan-100" },
-  { label: "Cerrajero", icon: KeyRound, color: "bg-purple-50 text-purple-600 border-purple-100 hover:bg-purple-100" },
-  { label: "Jardinería y Paisajismo", icon: Leaf, color: "bg-green-50 text-green-600 border-green-100 hover:bg-green-100" },
-  { label: "Limpieza Profunda", icon: Sparkles, color: "bg-teal-50 text-teal-600 border-teal-100 hover:bg-teal-100" },
-  { label: "Instalador de Gas", icon: Flame, color: "bg-red-50 text-red-600 border-red-100 hover:bg-red-100" },
+  { label: "Plomero",                   icon: Droplets,   iconBg: "bg-blue-500" },
+  { label: "Electricista",              icon: Zap,        iconBg: "bg-yellow-400" },
+  { label: "Albañil",                   icon: Hammer,     iconBg: "bg-orange-500" },
+  { label: "Pintor",                    icon: Paintbrush, iconBg: "bg-purple-500" },
+  { label: "Jardinería y Paisajismo",   icon: Leaf,       iconBg: "bg-green-500" },
+  { label: "Técnico en Refrigeración",  icon: Wind,       iconBg: "bg-red-500" },
+  { label: "Carpintero",                icon: Wrench,     iconBg: "bg-amber-600" },
+  { label: "Limpieza Profunda",         icon: Sparkles,   iconBg: "bg-teal-500" },
 ] as const
 
 const FEATURES = [
@@ -127,15 +124,19 @@ export default async function HomePage({ searchParams }: PageProps) {
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Busca por Categoría</h2>
               <p className="text-gray-500">Encuentra al profesional indicado para tu proyecto</p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {CATEGORIES.map(({ label, icon: Icon, color }) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {CATEGORIES.map(({ label, icon: Icon, iconBg }) => (
                 <Link
                   key={label}
                   href={`/?profession=${encodeURIComponent(label)}`}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-xl border transition-all hover:-translate-y-0.5 hover:shadow-sm ${color}`}
+                  className="flex flex-col gap-5 p-6 bg-gray-100 rounded-2xl hover:bg-gray-200 transition-colors group"
                 >
-                  <Icon className="h-6 w-6" />
-                  <span className="text-xs font-medium text-center leading-tight">{label}</span>
+                  <div className={`w-14 h-14 ${iconBg} rounded-2xl flex items-center justify-center shadow-sm`}>
+                    <Icon className="h-7 w-7 text-white" strokeWidth={1.75} />
+                  </div>
+                  <span className="font-semibold text-gray-900 text-sm group-hover:text-brand-700 transition-colors leading-snug">
+                    {label}
+                  </span>
                 </Link>
               ))}
             </div>
